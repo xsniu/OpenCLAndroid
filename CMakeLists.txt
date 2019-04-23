@@ -43,6 +43,17 @@ link_directories(${CMAKE_SOURCE_DIR}/OpenCL/lib/)
 
 add_subdirectory(oclutil)
 
+include_directories(${CMAKE_SOURCE_DIR}/Util/include)
+include_directories(${CMAKE_SOURCE_DIR}/Common/include)
+
+
+file(GLOB_RECURSE  SRC_LIST 
+    ${CMAKE_SOURCE_DIR}/Util/src/*.cpp
+    main.cpp)
+
+
+
+
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/opencv/opencv3_4_notbb/include)
 
@@ -50,7 +61,7 @@ link_libraries(${OPENCV_STATIC_LIBS})
 
 link_libraries(-lm -llog)
 
-add_executable(OpenCLDemo main.cpp)
+add_executable(OpenCLDemo ${SRC_LIST})
 target_link_libraries(OpenCLDemo OpenCL oclutil ${OPENCV_STATIC_LIBS})
 
 
